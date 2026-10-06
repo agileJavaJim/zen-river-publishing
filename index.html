@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zen River Publishing — Hours Back: 80/20 Guides to Everyday AI</title>
+<meta name="description" content="Zen River Publishing — the Hours Back series by Maya Bennett. Short, practical 80/20 guides to everyday AI for busy parents, professionals, students, and teachers.">
+<style>
+  :root {
+    --paper: #FAF7F2;
+    --card: #FFFFFF;
+    --ink: #2A2723;
+    --muted: #6E665B;
+    --line: #E7DFD2;
+    --accent: #2F5D50;
+    --accent-dark: #24473E;
+    --badge: #B3541E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ---------- header ---------- */
+  header.site {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; letter-spacing: .02em; }
+  .brand small { display: block; font-family: system-ui, sans-serif; font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 1.4rem; font-size: .95rem; }
+  nav a:hover { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { text-align: center; padding: 4.5rem 0 3.5rem; }
+  .hero .kicker { font-size: .78rem; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+  .hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+    line-height: 1.18;
+    max-width: 20ch;
+    margin: 0 auto 1.2rem;
+  }
+  .hero p.lede { color: var(--muted); font-size: 1.12rem; max-width: 42ch; margin: 0 auto 2rem; }
+  .btn {
+    display: inline-block; text-decoration: none; cursor: pointer;
+    background: var(--accent); color: #fff;
+    padding: .85rem 1.9rem; border-radius: 999px; border: none;
+    font-size: 1rem; transition: background .2s;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); margin-left: .6rem; }
+  .btn.ghost:hover { border-color: var(--muted); }
+
+  /* ---------- books ---------- */
+  section.books { padding: 2.5rem 0 4rem; }
+  section.books h2, section.newsletter h2, section.about h2 {
+    font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+    font-size: 1.9rem; text-align: center; margin-bottom: .6rem;
+  }
+  .section-sub { text-align: center; color: var(--muted); margin-bottom: 2.6rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.8rem; }
+  .book {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 1.6rem 1.4rem 1.5rem; display: flex; flex-direction: column;
+    position: relative;
+  }
+  .cover {
+    aspect-ratio: 2 / 3; border-radius: 6px; margin-bottom: 1.3rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 1.1rem 1rem; color: #fff;
+    box-shadow: 0 10px 24px rgba(42,39,35,.16);
+  }
+  .cover .series { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; opacity: .85; }
+  .cover .ctitle { font-family: Georgia, serif; font-size: 1.28rem; line-height: 1.3; }
+  .cover .cauthor { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
+  .cover.c1 { background: linear-gradient(160deg, #D9A37E, #A9603C); }
+  .cover.c2 { background: linear-gradient(160deg, #8FA0B3, #54637A); }
+  .cover.c3 { background: linear-gradient(160deg, #9DB08C, #5F7355); }
+  .cover.c4 { background: linear-gradient(160deg, #D3B078, #9A7434); }
+  .book h3 { font-family: Georgia, serif; font-weight: 400; font-size: 1.12rem; line-height: 1.35; margin-bottom: .5rem; }
+  .book p.blurb { color: var(--muted); font-size: .94rem; flex: 1; margin-bottom: 1rem; }
+  .price { font-size: .9rem; color: var(--muted); margin-bottom: .8rem; }
+  .price strong { color: var(--ink); font-size: 1.05rem; }
+  .free-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--badge); color: #fff;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    padding: .35rem .7rem; border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(179,84,30,.35);
+  }
+  .book .btn { text-align: center; font-size: .94rem; padding: .75rem 1rem; }
+
+  /* ---------- newsletter ---------- */
+  section.newsletter { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 3.5rem 0; }
+  section.newsletter .inner { max-width: 560px; margin: 0 auto; text-align: center; }
+  section.newsletter p { color: var(--muted); margin-bottom: 1.6rem; }
+  form#nl-form { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+  form#nl-form input[type="email"] {
+    flex: 1 1 240px; max-width: 340px;
+    padding: .85rem 1.1rem; border: 1px solid var(--line); border-radius: 999px;
+    font-size: 1rem; background: var(--paper); color: var(--ink);
+  }
+  form#nl-form input[type="email"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .fine { font-size: .8rem; color: var(--muted); margin-top: 1rem; }
+  #nl-thanks { padding: 1.6rem; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+  #nl-thanks strong { font-family: Georgia, serif; font-size: 1.2rem; display: block; margin-bottom: .4rem; }
+  #nl-error { color: #9C3D1A; margin-top: 1rem; font-size: .92rem; }
+
+  /* ---------- about / footer ---------- */
+  section.about { padding: 3.5rem 0; }
+  section.about .inner { max-width: 620px; margin: 0 auto; text-align: center; }
+  section.about p { color: var(--muted); margin-bottom: 1rem; }
+  footer { border-top: 1px solid var(--line); padding: 1.8rem 0 2.4rem; text-align: center; color: var(--muted); font-size: .85rem; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 560px) {
+    nav a { margin-left: .9rem; }
+    .hero { padding: 3rem 0 2.5rem; }
+    .btn.ghost { margin-left: 0; margin-top: .6rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">Zen River<small>Publishing</small></div>
+    <nav>
+      <a href="#books">Books</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Zen River Publishing</div>
+    <h1>80/20 guides to everyday AI — get hours back each week.</h1>
+    <p class="lede">The <em>Hours Back</em> series by Maya Bennett: short, practical books that show busy people which small slice of AI does most of the work.</p>
+    <a class="btn" href="#books">Browse the books</a>
+    <a class="btn ghost" href="#newsletter">Get the newsletter</a>
+  </div>
+</section>
+
+<section class="books" id="books">
+  <div class="wrap">
+    <h2>The Hours Back Series</h2>
+    <p class="section-sub">Four books. One idea: a little AI, applied well, buys back your week.</p>
+    <div class="grid">
+
+      <article class="book">
+        <span class="free-badge">Free Oct 5&ndash;9</span>
+        <div class="cover c1">
+          <span class="series">Hours Back</span>
+          <span class="ctitle">The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</span>
+          <span class="cauthor">Maya Bennett</span>
+        </div>
+        <h3>Hours Back: The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</h3>
+        <p class="blurb">Practical AI shortcuts for the busiest people on earth — reclaim hours from the beautiful chaos of family life.</p>
+        <div class="price"><strong>Free</strong> Oct 5&ndash;9 &middot; <s>$3.99</s></div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Download free on Amazon</a>
+      </article>
+
+      <article class="book">
+        <div class="cover c2">
+          <span class="series">Hours Back</span>
+          <span class="ctitle">Hours Back at Work</span>
+          <span class="cauthor">Maya Bennett</span>
+        </div>
+        <h3>Hours Back at Work</h3>
+        <p class="blurb">The 80/20 of AI at the office — automate the busywork and get your evenings back.</p>
+        <div class="price"><strong>$3.99</strong> Kindle</div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HLBCFJYB" target="_blank" rel="noopener">Buy on Amazon</a>
+      </article>
+
+      <article class="book">
+        <div class="cover c3">
+          <span class="series">Hours Back</span>
+          <span class="ctitle">Hours Back for Students</span>
+          <span class="cauthor">Maya Bennett</span>
+        </div>
+        <h3>Hours Back for Students</h3>
+        <p class="blurb">Study smarter with AI — the 20% of tools that deliver 80% of the results, from homework to exams.</p>
+        <div class="price"><strong>$3.99</strong> Kindle</div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HL7564KZ" target="_blank" rel="noopener">Buy on Amazon</a>
+      </article>
+
+      <article class="book">
+        <div class="cover c4">
+          <span class="series">Hours Back</span>
+          <span class="ctitle">Hours Back for Teachers</span>
+          <span class="cauthor">Maya Bennett</span>
+        </div>
+        <h3>Hours Back for Teachers</h3>
+        <p class="blurb">Lesson plans, grading, and admin — cut the paperwork and get back to teaching.</p>
+        <div class="price"><strong>$3.99</strong> Kindle</div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HL7J3B1P" target="_blank" rel="noopener">Buy on Amazon</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="wrap">
+    <div class="inner">
+      <h2>The Sunday Reset</h2>
+      <p>One short email now and then — a new AI shortcut, a series update, the occasional free-book window. No spam, ever.</p>
+      <form id="nl-form" novalidate>
+        <input type="email" name="email" id="nl-email" placeholder="you@example.com" required aria-label="Email address">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit" id="nl-btn">Subscribe</button>
+      </form>
+      <p class="fine">Unsubscribe anytime. We never share your address.</p>
+      <div id="nl-thanks" hidden>
+        <strong>You&rsquo;re on the list.</strong>
+        <span>Welcome to the Sunday Reset — your first note is on its way.</span>
+      </div>
+      <p id="nl-error" hidden></p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="inner">
+      <h2>About</h2>
+      <p>Maya Bennett writes the <em>Hours Back</em> series — practical, jargon-free 80/20 guides to everyday AI for people with full lives and thin margins.</p>
+      <p>Zen River Publishing is an independent imprint with a simple brief: short, useful books for busy people. Calm on the surface, quietly ambitious underneath.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 Zen River Publishing &middot; All four <em>Hours Back</em> books available on <a href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Amazon Kindle</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('nl-form');
+  var email = document.getElementById('nl-email');
+  var btn = document.getElementById('nl-btn');
+  var thanks = document.getElementById('nl-thanks');
+  var err = document.getElementById('nl-error');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var value = email.value.trim();
+    if (!value || value.indexOf('@') < 0) {
+      err.textContent = 'Please enter a valid email address.';
+      err.hidden = false;
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+    fetch('https://formsubmit.co/ajax/james.robinson12128@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: value,
+        _subject: 'New Zen River Publishing subscriber',
+        _captcha: 'false',
+        _template: 'table'
+      })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('bad response');
+      return res.json();
+    }).then(function () {
+      form.hidden = true;
+      thanks.hidden = false;
+    }).catch(function () {
+      err.textContent = 'Something went wrong — please try again in a moment.';
+      err.hidden = false;
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

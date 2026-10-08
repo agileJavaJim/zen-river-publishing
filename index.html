@@ -102,6 +102,7 @@
   section.newsletter { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 3.5rem 0; }
   section.newsletter .inner { max-width: 560px; margin: 0 auto; text-align: center; }
   section.newsletter p { color: var(--muted); margin-bottom: 1.6rem; }
+  .nl-kicker { font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--badge); font-weight: 700; margin-bottom: .9rem; }
   form#nl-form { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
   form#nl-form input[type="email"] {
     flex: 1 1 240px; max-width: 340px;
@@ -147,7 +148,7 @@
     <h1>80/20 guides to everyday AI — get hours back each week.</h1>
     <p class="lede">The <em>Hours Back</em> series by Maya Bennett: short, practical books that show busy people which small slice of AI does most of the work.</p>
     <a class="btn" href="#books">Browse the books</a>
-    <a class="btn ghost" href="#newsletter">Get the newsletter</a>
+    <a class="btn ghost" href="#newsletter">Get free-book alerts</a>
   </div>
 </section>
 
@@ -158,7 +159,9 @@
     <div class="grid">
 
       <article class="book">
+        <!-- FREE-PROMO-START: Book #1 free run, Oct 5–9 Pacific. Auto-hides after the promo (see PROMO_END_UTC in the script at the bottom of the page), or delete this block manually. -->
         <span class="free-badge">Free Oct 5&ndash;9</span>
+        <!-- FREE-PROMO-END -->
         <div class="cover c1">
           <span class="series">Hours Back</span>
           <span class="ctitle">The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</span>
@@ -166,8 +169,8 @@
         </div>
         <h3>Hours Back: The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</h3>
         <p class="blurb">Practical AI shortcuts for the busiest people on earth — reclaim hours from the beautiful chaos of family life.</p>
-        <div class="price"><strong>Free</strong> Oct 5&ndash;9 &middot; <s>$3.99</s></div>
-        <a class="btn" href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Download free on Amazon</a>
+        <div class="price" id="book1-price"><strong>Free</strong> Oct 5&ndash;9 &middot; <s>$3.99</s></div>
+        <a class="btn" id="book1-btn" href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Download free on Amazon</a>
       </article>
 
       <article class="book">
@@ -213,19 +216,23 @@
 <section class="newsletter" id="newsletter">
   <div class="wrap">
     <div class="inner">
+      <div class="nl-kicker">Free-book alerts</div>
       <h2>The Sunday Reset</h2>
-      <p>One short email now and then — a new AI shortcut, a series update, the occasional free-book window. No spam, ever.</p>
-      <form id="nl-form" novalidate>
-        <input type="email" name="email" id="nl-email" placeholder="you@example.com" required aria-label="Email address">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <button class="btn" type="submit" id="nl-btn">Subscribe</button>
-      </form>
+      <p>Never miss a free book. Join the list for first dibs on every free-book window — plus one short email now and then with a new AI shortcut and series updates. No spam, ever.</p>
+      <!-- ============================================================
+        EMAIL CAPTURE — INTERIM: FormSubmit (working now; submissions go to
+        james.robinson12128@gmail.com, already activated 2026-10-06).
+        TO SWITCH TO BREVO LATER (2-minute change):
+        1. In Brevo: create a free account, make a list called "Zen River Readers",
+           then create a signup form and copy its embed code.
+        2. Delete everything between EMAIL-FORM-START and EMAIL-FORM-END below.
+        3. Paste the Brevo embed code in its place. Keep the section id="newsletter".
+        Done — the Brevo form brings its own styling and confirmation message.
+      ============================================================ -->
+      <!-- EMAIL-FORM-START -->
+      <iframe width="540" height="305" src="https://1f306985.sibforms.com/v2/serve/MUIFANMC8bgTwNBdJFOL7wKfyW3yEjiK9AbxgNbdfqnheJy-BjTZ-sLq8cF4S_J1p-CK7dstlICxYG6a8glR9A9kBur71RAaOY0cU346HG3ldtrE9MOeUAqsWX3HCw1u5mCCRmutzIHIR2JZ9uKN5R3FeH-vMeHqjE_lsudY3an1AFDp10Fh-X7qUswPEt0RiDWhjLXoO6e6MdnFXA==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>
+      <!-- EMAIL-FORM-END -->
       <p class="fine">Unsubscribe anytime. We never share your address.</p>
-      <div id="nl-thanks" hidden>
-        <strong>You&rsquo;re on the list.</strong>
-        <span>Welcome to the Sunday Reset — your first note is on its way.</span>
-      </div>
-      <p id="nl-error" hidden></p>
     </div>
   </div>
 </section>
@@ -247,46 +254,21 @@
 </footer>
 
 <script>
+/* Book #1 free-promo auto-expiry.
+   PROMO_END_UTC = end of Oct 9 Pacific (the Oct 5–9 free run), i.e. Oct 10 00:00 PDT = 07:00 UTC.
+   After that moment: the "Free Oct 5–9" badge hides, and Book #1's card reverts to the
+   normal "$3.99 Kindle" price line and "Buy on Amazon" button — no manual edit needed.
+   To change the date: edit PROMO_END_UTC below. To remove the promo entirely by hand:
+   delete the FREE-PROMO comment blocks in the Book #1 card above. */
 (function () {
-  var form = document.getElementById('nl-form');
-  var email = document.getElementById('nl-email');
-  var btn = document.getElementById('nl-btn');
-  var thanks = document.getElementById('nl-thanks');
-  var err = document.getElementById('nl-error');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    err.hidden = true;
-    var value = email.value.trim();
-    if (!value || value.indexOf('@') < 0) {
-      err.textContent = 'Please enter a valid email address.';
-      err.hidden = false;
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Subscribing…';
-    fetch('https://formsubmit.co/ajax/james.robinson12128@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        email: value,
-        _subject: 'New Zen River Publishing subscriber',
-        _captcha: 'false',
-        _template: 'table'
-      })
-    }).then(function (res) {
-      if (!res.ok) throw new Error('bad response');
-      return res.json();
-    }).then(function () {
-      form.hidden = true;
-      thanks.hidden = false;
-    }).catch(function () {
-      err.textContent = 'Something went wrong — please try again in a moment.';
-      err.hidden = false;
-      btn.disabled = false;
-      btn.textContent = 'Subscribe';
-    });
-  });
+  var PROMO_END_UTC = '2026-10-10T07:00:00Z';
+  if (Date.now() < Date.parse(PROMO_END_UTC)) return;
+  var badge = document.querySelector('.free-badge');
+  if (badge) badge.style.display = 'none';
+  var price = document.getElementById('book1-price');
+  if (price) price.innerHTML = '<strong>$3.99</strong> Kindle';
+  var btn = document.getElementById('book1-btn');
+  if (btn) btn.textContent = 'Buy on Amazon';
 })();
 </script>
 

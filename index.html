@@ -85,6 +85,7 @@
   .cover.c2 { background: linear-gradient(160deg, #8FA0B3, #54637A); }
   .cover.c3 { background: linear-gradient(160deg, #9DB08C, #5F7355); }
   .cover.c4 { background: linear-gradient(160deg, #D3B078, #9A7434); }
+  .cover.c5 { background: linear-gradient(160deg, #2E4038, #101D18); }
   .book h3 { font-family: Georgia, serif; font-weight: 400; font-size: 1.12rem; line-height: 1.35; margin-bottom: .5rem; }
   .book p.blurb { color: var(--muted); font-size: .94rem; flex: 1; margin-bottom: 1rem; }
   .price { font-size: .9rem; color: var(--muted); margin-bottom: .8rem; }
@@ -159,9 +160,6 @@
     <div class="grid">
 
       <article class="book">
-        <!-- FREE-PROMO-START: Book #1 free run, Oct 5–9 Pacific. Auto-hides after the promo (see PROMO_END_UTC in the script at the bottom of the page), or delete this block manually. -->
-        <span class="free-badge">Free Oct 5&ndash;9</span>
-        <!-- FREE-PROMO-END -->
         <div class="cover c1">
           <span class="series">Hours Back</span>
           <span class="ctitle">The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</span>
@@ -169,8 +167,8 @@
         </div>
         <h3>Hours Back: The Busy Parent&rsquo;s 80/20 Guide to Everyday AI</h3>
         <p class="blurb">Practical AI shortcuts for the busiest people on earth — reclaim hours from the beautiful chaos of family life.</p>
-        <div class="price" id="book1-price"><strong>Free</strong> Oct 5&ndash;9 &middot; <s>$3.99</s></div>
-        <a class="btn" id="book1-btn" href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Download free on Amazon</a>
+        <div class="price"><strong>$3.99</strong> Kindle</div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Buy on Amazon</a>
       </article>
 
       <article class="book">
@@ -207,6 +205,28 @@
         <p class="blurb">Lesson plans, grading, and admin — cut the paperwork and get back to teaching.</p>
         <div class="price"><strong>$3.99</strong> Kindle</div>
         <a class="btn" href="https://www.amazon.com/dp/B0HL7J3B1P" target="_blank" rel="noopener">Buy on Amazon</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="books" id="fiction">
+  <div class="wrap">
+    <h2>Fiction by Sage Merritt</h2>
+    <p class="section-sub">The Cedar Hollow Pack — a fated-mates, small-town shifter romance trilogy.</p>
+    <div class="grid">
+
+      <article class="book">
+        <div class="cover c5">
+          <span class="series">Cedar Hollow Pack &middot; Book One</span>
+          <span class="ctitle">The Wolf Who Fixed Things</span>
+          <span class="cauthor">Sage Merritt</span>
+        </div>
+        <h3>The Wolf Who Fixed Things</h3>
+        <p class="blurb">Some men fix what&rsquo;s broken. Jude Callahan fixes everything &mdash; except himself. A fated-mates, small-town shifter romance.</p>
+        <div class="price"><strong>$3.99</strong> Kindle &middot; Free with Kindle Unlimited</div>
+        <a class="btn" href="https://www.amazon.com/dp/B0HNV5G18P" target="_blank" rel="noopener">Buy on Amazon</a>
       </article>
 
     </div>
@@ -252,25 +272,6 @@
     &copy; 2026 Zen River Publishing &middot; All four <em>Hours Back</em> books available on <a href="https://www.amazon.com/dp/B0HL3T7Z81" target="_blank" rel="noopener">Amazon Kindle</a>
   </div>
 </footer>
-
-<script>
-/* Book #1 free-promo auto-expiry.
-   PROMO_END_UTC = end of Oct 9 Pacific (the Oct 5–9 free run), i.e. Oct 10 00:00 PDT = 07:00 UTC.
-   After that moment: the "Free Oct 5–9" badge hides, and Book #1's card reverts to the
-   normal "$3.99 Kindle" price line and "Buy on Amazon" button — no manual edit needed.
-   To change the date: edit PROMO_END_UTC below. To remove the promo entirely by hand:
-   delete the FREE-PROMO comment blocks in the Book #1 card above. */
-(function () {
-  var PROMO_END_UTC = '2026-10-10T07:00:00Z';
-  if (Date.now() < Date.parse(PROMO_END_UTC)) return;
-  var badge = document.querySelector('.free-badge');
-  if (badge) badge.style.display = 'none';
-  var price = document.getElementById('book1-price');
-  if (price) price.innerHTML = '<strong>$3.99</strong> Kindle';
-  var btn = document.getElementById('book1-btn');
-  if (btn) btn.textContent = 'Buy on Amazon';
-})();
-</script>
 
 </body>
 </html>

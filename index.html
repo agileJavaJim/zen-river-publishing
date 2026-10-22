@@ -67,6 +67,8 @@
   }
   .section-sub { text-align: center; color: var(--muted); margin-bottom: 2.6rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.8rem; }
+  #fiction .grid { grid-template-columns: repeat(auto-fit, minmax(230px, 262px)); justify-content: center; }
+  .cover-img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 6px; margin-bottom: 1.3rem; box-shadow: 0 10px 24px rgba(42,39,35,.16); display: block; }
   .book {
     background: var(--card); border: 1px solid var(--line); border-radius: 14px;
     padding: 1.6rem 1.4rem 1.5rem; display: flex; flex-direction: column;
@@ -218,11 +220,7 @@
     <div class="grid">
 
       <article class="book">
-        <div class="cover c5">
-          <span class="series">Cedar Hollow Pack &middot; Book One</span>
-          <span class="ctitle">The Wolf Who Fixed Things</span>
-          <span class="cauthor">Sage Merritt</span>
-        </div>
+        <img class="cover-img" src="wolf-book-1-cover.jpg" alt="Cover of The Wolf Who Fixed Things: Jude Callahan, arms crossed in a flannel shirt, standing in a misty cedar forest with a lit cabin window behind him">
         <h3>The Wolf Who Fixed Things</h3>
         <p class="blurb">Some men fix what&rsquo;s broken. Jude Callahan fixes everything &mdash; except himself. A fated-mates, small-town shifter romance.</p>
         <div class="price"><strong>$3.99</strong> Kindle &middot; Free with Kindle Unlimited</div>
